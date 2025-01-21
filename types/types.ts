@@ -18,6 +18,11 @@ export type AssetResponse = {
   timestamp: number;
 };
 
+export type AssetsResponse = {
+  data: AssetData[];
+  timestamp: number;
+};
+
 export type TransformedAssetResponse = AssetData & {
   timestamp: number;
 };

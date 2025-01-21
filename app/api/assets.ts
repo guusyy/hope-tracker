@@ -1,11 +1,24 @@
-import { AssetResponse } from "@/types/types";
+import { AssetsResponse, AssetResponse } from "@/types/types";
 import { queryOptions } from "@tanstack/react-query";
 
-export const assetOptions = queryOptions<AssetResponse>({
-  queryKey: ["bitcoin"],
+export const assetsOptions = queryOptions<AssetsResponse>({
+  queryKey: ["assets"],
   queryFn: async () => {
-    const response = await fetch("https://api.coincap.io/v2/assets/bitcoin");
+    const response = await fetch("https://api.coincap.io/v2/assets");
     return response.json();
   },
-  refetchInterval: 1000 * 10,
 });
+
+export const assetOptions = (assetId?: string) => {
+  return queryOptions<AssetResponse>({
+    queryKey: [assetId],
+    queryFn: async () => {
+      const response = await fetch(
+        `https://api.coincap.io/v2/assets/${assetId}`
+      );
+      return response.json();
+    },
+    refetchInterval: 1000 * 10,
+    enabled: !!assetId,
+  });
+};
