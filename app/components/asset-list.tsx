@@ -36,7 +36,7 @@ export function AssetList() {
                 href={`/${asset.id}`}
                 className="flex gap-2 py-2 px-4 rounded-lg bg-slate-800 hover:bg-gray-700"
               >
-                <AssetLogo classes="w-7 h-7" asset={asset} />
+                <AssetLogo className="w-7 h-7" asset={asset} />
                 <span>
                   {asset.symbol} - {asset.name}
                 </span>
