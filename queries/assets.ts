@@ -16,6 +16,9 @@ export const assetOptions = (assetId?: string) => {
       const response = await fetch(
         `https://api.coincap.io/v2/assets/${assetId}`
       );
+      if (!response.ok) {
+        throw new Error("Failed to fetch asset");
+      }
       return response.json();
     },
     refetchInterval: 1000 * 10,

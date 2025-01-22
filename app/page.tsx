@@ -1,21 +1,20 @@
-import { getQueryClient } from "./util/get-query-client";
+import { getQueryClient } from "@/util/get-query-client";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
-import { assetsOptions } from "./api/assets";
-import { AssetInfo } from "./components/asset-info";
+import { assetsOptions } from "@/queries/assets";
+import { AssetList } from "@/app/components/asset-list";
 
 export default async function Home() {
   const queryClient = getQueryClient()
-
   void queryClient.prefetchQuery(assetsOptions)
 
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+    <div className="grid grid-rows-[1fr_20px] min-h-screen py-10 container mx-auto">
+      <main className="flex flex-col gap-8 items-center">
         <HydrationBoundary state={dehydrate(queryClient)}>
-          <AssetInfo />
+          <AssetList />
         </HydrationBoundary>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
+      <footer className="flex gap-6 flex-wrap items-center justify-center">
       </footer>
     </div>
   );
