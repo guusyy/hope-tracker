@@ -1,4 +1,8 @@
-import { AssetsResponse, AssetResponse } from "@/types/types";
+import {
+  AssetsResponse,
+  AssetResponse,
+  AssetHistoryResponse,
+} from "@/types/types";
 import { queryOptions } from "@tanstack/react-query";
 
 export const assetsOptions = queryOptions<AssetsResponse>({
@@ -11,7 +15,7 @@ export const assetsOptions = queryOptions<AssetsResponse>({
 
 export const assetOptions = (assetId?: string) => {
   return queryOptions<AssetResponse>({
-    queryKey: [assetId],
+    queryKey: ["details", assetId],
     queryFn: async () => {
       const response = await fetch(
         `https://api.coincap.io/v2/assets/${assetId}`
@@ -22,6 +26,22 @@ export const assetOptions = (assetId?: string) => {
       return response.json();
     },
     refetchInterval: 1000 * 10,
+    enabled: !!assetId,
+  });
+};
+
+export const assetHistory = (assetId?: string) => {
+  return queryOptions<AssetHistoryResponse>({
+    queryKey: ["history", assetId],
+    queryFn: async () => {
+      const response = await fetch(
+        `https://api.coincap.io/v2/assets/${assetId}/history?interval=d1`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch asset history");
+      }
+      return response.json();
+    },
     enabled: !!assetId,
   });
 };

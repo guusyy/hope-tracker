@@ -1,3 +1,8 @@
+export type CoinCapResponse<T> = {
+  data: T;
+  timestamp: number;
+};
+
 export type AssetData = {
   id: string;
   rank: string;
@@ -13,16 +18,18 @@ export type AssetData = {
   explorer: string;
 };
 
-export type AssetResponse = {
-  data: AssetData;
-  timestamp: number;
+export type AssetHistory = {
+  priceUsd: string;
+  time: number;
 };
 
-export type AssetsResponse = {
-  data: AssetData[];
-  timestamp: number;
-};
+export type AssetResponse = CoinCapResponse<AssetData>;
 
-export type TransformedAssetResponse = AssetData & {
-  timestamp: number;
+export type AssetsResponse = CoinCapResponse<AssetData[]>;
+
+export type AssetHistoryResponse = CoinCapResponse<AssetHistory[]>;
+
+export type AssetHistoryChartPoint = {
+  day: string;
+  value: string;
 };
