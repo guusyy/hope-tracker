@@ -20,7 +20,7 @@ export function useAssetChartHistory(historyData: AssetHistory[]) {
   return useMemo(() => {
     return historyData.map((history) => {
       return {
-        day: new Date(history.time).toLocaleDateString(),
+        day: new Date(history.time),
         value: history.priceUsd,
       };
     });

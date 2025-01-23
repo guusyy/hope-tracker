@@ -30,6 +30,6 @@ export type AssetsResponse = CoinCapResponse<AssetData[]>;
 export type AssetHistoryResponse = CoinCapResponse<AssetHistory[]>;
 
 export type AssetHistoryChartPoint = {
-  day: string;
+  day: Date;
   value: string;
 };

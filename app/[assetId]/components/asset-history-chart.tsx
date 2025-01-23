@@ -43,7 +43,7 @@ function AssetHistoryChartContent({ historyData }: { historyData: AssetHistoryCh
   return (
     <Card className="my-5">
       <CardContent>
-        <ChartContainer config={chartConfig} className="min-h-[300px]">
+        <ChartContainer config={chartConfig} className="min-h-[400px]">
           <LineChart
             accessibilityLayer
             data={historyData}
@@ -58,7 +58,11 @@ function AssetHistoryChartContent({ historyData }: { historyData: AssetHistoryCh
               tickLine={false}
               axisLine={false}
               tickMargin={8}
-              tickFormatter={(value) => value.slice(0, 3)}
+              tickFormatter={(value) => {
+                return value.toLocaleDateString("en-US", {
+                  month: "short",
+                })
+              }}
             />
             <ChartTooltip
               cursor={false}
