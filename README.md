@@ -1,21 +1,39 @@
 ## Getting Started
 
-First, run the development server:
+To set up the project and run the development server, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/guusyy/hope-tracker.git
+   cd hope-tracker
+   ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Install Dependencies**:
+   Use one of the following commands to install the required packages:
+   ```bash
+   npm install
+   # or
+   yarn install
+   # or
+   pnpm install
+   # or
+   bun install
+   ```
 
-## Used apis
-Here's a completed section for "Used APIs" based on the provided code:
+3. **Run the Development Server**:
+   After installing the dependencies, start the development server with:
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   # or
+   pnpm dev
+   # or
+   bun dev
+   ```
+
+4. **Open the Application**:
+   Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Used APIs
 
