@@ -8,12 +8,17 @@ export default async function Home() {
   void queryClient.prefetchQuery(assetsOptions)
 
   return (
-    <div className="grid grid-rows-[1fr_20px] min-h-screen py-10 container mx-auto">
-      <main className="flex flex-col gap-8 items-center">
+    <div className="grid grid-rows-[80px_1fr_20px] min-h-screen py-10 max-w-3xl mx-auto px-5">
+      <header className="flex items-center justify-between">
+        <h1 className="text-2xl text-center font-medium text-amber-50">Hope tracker</h1>
+      </header>
+
+      <main>
         <HydrationBoundary state={dehydrate(queryClient)}>
           <AssetList />
         </HydrationBoundary>
       </main>
+
       <footer className="flex gap-6 flex-wrap items-center justify-center">
       </footer>
     </div>

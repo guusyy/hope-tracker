@@ -1,4 +1,5 @@
 import { AssetData, AssetHistory } from "@/types/types";
+import { logicalRound } from "@/util/price";
 import { useMemo } from "react";
 
 export function useFilteredAssets(assets: AssetData[], searchTerm: string) {
@@ -21,7 +22,7 @@ export function useAssetChartHistory(historyData: AssetHistory[]) {
     return historyData.map((history) => {
       return {
         day: new Date(history.time),
-        value: history.priceUsd,
+        value: logicalRound(history.priceUsd),
       };
     });
   }, [historyData]);
