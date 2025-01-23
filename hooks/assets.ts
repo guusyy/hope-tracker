@@ -1,6 +1,6 @@
 import { AssetData, AssetHistory } from "@/types/types";
 import { logicalRound } from "@/util/price";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 
 export function useFilteredAssets(assets: AssetData[], searchTerm: string) {
   return useMemo(() => {

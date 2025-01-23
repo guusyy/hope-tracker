@@ -1,5 +1,3 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
 ## Getting Started
 
 First, run the development server:
@@ -16,21 +14,41 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Used apis
+Here's a completed section for "Used APIs" based on the provided code:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Used APIs
 
-## Learn More
+This application utilizes the CoinCap API to fetch cryptocurrency data. The following endpoints are used:
 
-To learn more about Next.js, take a look at the following resources:
+1. **Assets Endpoint**
+   - **Description**: Retrieves a list of all available assets.
+   - **API Call**: 
+     ```javascript
+     const response = await fetch("https://api.coincap.io/v2/assets");
+     ```
+   - **Response Type**: `AssetsResponse`
+   - **Query Key**: `["assets"]`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Asset Details Endpoint**
+   - **Description**: Fetches detailed information about a specific asset using its ID.
+   - **API Call**: 
+     ```javascript
+     const response = await fetch(`https://api.coincap.io/v2/assets/${assetId}`);
+     ```
+   - **Response Type**: `AssetResponse`
+   - **Query Key**: `["details", assetId]`
+   - **Refetch Interval**: 10 seconds (10000 milliseconds)
+   - **Enabled**: Only fetches if `assetId` is provided.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. **Asset History Endpoint**
+   - **Description**: Retrieves historical data for a specific asset over a daily interval.
+   - **API Call**: 
+     ```javascript
+     const response = await fetch(`https://api.coincap.io/v2/assets/${assetId}/history?interval=d1`);
+     ```
+   - **Response Type**: `AssetHistoryResponse`
+   - **Query Key**: `["history", assetId]`
+   - **Enabled**: Only fetches if `assetId` is provided.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+These APIs provide the necessary data to display asset information and historical trends within the application.

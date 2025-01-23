@@ -31,7 +31,7 @@ export function AssetHistoryChart({ asset }: { asset: AssetData }) {
         {assetHistoryData && <AssetHistoryChartContent historyData={historyData} />}
       </CardContent>
 
-      <CardFooter className="flex-col items-start gap-2 text-sm">
+      <CardFooter className="flex-col items-start gap-2 text-sm pl-10">
         <TrendInfo trend={asset.changePercent24Hr} />
         <div className="leading-none text-muted-foreground">
           Showing price history of last 12 months
@@ -51,7 +51,7 @@ function AssetHistoryChartContent({ historyData }: { historyData: AssetHistoryCh
         margin={{
           top: 40,
           left: 24,
-          right: 24,
+          right: 10,
         }}
       >
         <CartesianGrid vertical={false} />

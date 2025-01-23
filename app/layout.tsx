@@ -25,8 +25,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/btc@2x.png" />
+      </head>
       <body
-        className={`dark ${geistSans.variable} ${geistMono.variable} font-[family-name:var(--font-geist-sans)] antialiased`}
+        className={`dark ${geistSans.variable} ${geistMono.variable} font-[family-name:var(--font-geist-sans)] antialiased isolate`}
       >
         <Providers>{children}</Providers>
       </body>
