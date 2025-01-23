@@ -1,7 +1,7 @@
 "use client"
 
 import { TrendingDown, TrendingUp } from "lucide-react"
-import { CartesianGrid, Line, LineChart, XAxis } from "recharts"
+import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts"
 
 import {
   Card,
@@ -9,7 +9,6 @@ import {
   CardFooter,
 } from "@/components/ui/card"
 import {
-  ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
@@ -18,13 +17,7 @@ import { AssetData, AssetHistoryChartPoint } from "@/types/types"
 import { assetHistory } from "@/queries/assets"
 import { useQuery } from "@tanstack/react-query"
 import { useAssetChartHistory } from "@/hooks/assets"
-
-const chartConfig = {
-  desktop: {
-    label: "Desktop",
-    color: "hsl(var(--chart-1))",
-  },
-} satisfies ChartConfig
+import { chartConfig } from "@/lib/chart-config"
 
 export function AssetHistoryChart({ asset }: { asset: AssetData }) {
   const { data: assetHistoryData, isLoading } = useQuery(assetHistory(asset.id));
@@ -49,17 +42,24 @@ export function AssetHistoryChart({ asset }: { asset: AssetData }) {
 }
 
 function AssetHistoryChartContent({ historyData }: { historyData: AssetHistoryChartPoint[] }) {
+  const max = Math.max(...historyData.map((point) => Number(point.value)));
   return (
     <ChartContainer config={chartConfig}>
       <LineChart
         accessibilityLayer
         data={historyData}
         margin={{
+          top: 40,
           left: 24,
           right: 24,
         }}
       >
         <CartesianGrid vertical={false} />
+        <YAxis
+          orientation="right"
+          domain={[0, (max * 1.1)]}
+          stroke="transparent"
+        />
         <XAxis
           dataKey="day"
           tickLine={false}
