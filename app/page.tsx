@@ -10,7 +10,7 @@ export default async function Home() {
   return (
     <div className="grid grid-rows-[80px_1fr_20px] min-h-screen py-10 max-w-3xl mx-auto px-5">
       <header className="flex items-center justify-between">
-        <h1 className="text-2xl text-center font-medium text-amber-50">Hope tracker</h1>
+        <h1 className="text-2xl text-center font-medium text-amber-50">Hope tracker<span className="text-orange-500">.</span></h1>
       </header>
 
       <main>

@@ -9,6 +9,9 @@ import { AssetHistoryChart } from "./asset-history-chart";
 import { AssetPrice } from "@/app/components/asset-price";
 import { Spinner } from "@/components/ui/spinner";
 import { useLoaderWithMinimumTime } from "@/hooks/common";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
+import Link from "next/link";
 
 export function AssetInfo({ assetId }: { assetId: string }) {
   const { data: assetData, isLoading, isFetching } = useQuery(assetOptions(assetId));
@@ -23,7 +26,14 @@ export function AssetInfo({ assetId }: { assetId: string }) {
   }
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full items-start">
+      <Link href="/">
+        <Button variant="outline" className="mb-4" >
+          <ArrowLeft className="w-4 h-4" />
+          Back to overview
+        </Button>
+      </Link>
+
       <div className="flex gap-5">
         <AssetLogo asset={assetData.data} className="w-16 h-16" />
 
